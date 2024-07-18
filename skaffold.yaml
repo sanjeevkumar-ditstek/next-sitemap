@@ -1,0 +1,16 @@
+apiVersion: skaffold/v4beta11
+kind: Config
+metadata:
+  name: next-sitemap
+build:
+  artifacts:
+    - image: dockerfile-image
+      docker:
+        dockerfile: Dockerfile
+manifests:
+  rawYaml:
+    - deployment.yaml
+portForward:
+  - resourceType: service
+    resourceName: dockerfile-image
+    port: 3000
